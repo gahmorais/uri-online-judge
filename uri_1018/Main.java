@@ -1,46 +1,49 @@
 import java.util.Scanner;
 
 public class Main {
+    
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        int valorASacar,
-        quantidadeNotaCem = 0, 
-        quantidadeNotaCinquenta = 0, 
-        quantidadeNotaVinte = 0, 
-        quantidadeNotaDez = 0, 
-        quantidadeNotaCinco = 0, 
-        quantidadeNotaDois = 0, 
-        quantidadeNotaUm = 0;
+        int valorASacar = sc.nextInt();
+        int quantidadeNotaCem = 0;
+        int quantidadeNotaCinquenta = 0;
+        int quantidadeNotaVinte = 0;
+        int quantidadeNotaDez = 0;
+        int quantidadeNotaCinco = 0;
+        int quantidadeNotaDois = 0;
+        int quantidadeNotaUm = 0;
 
-        valorASacar = sc.nextInt();
+        int variavelAuxiliar = valorASacar;
 
-        while(valorASacar != 0){
-            if(valorASacar >= 100){
+        sc.close();
+
+        while(variavelAuxiliar != 0){
+            if(variavelAuxiliar >= 100){
                 quantidadeNotaCem++;
-                valorASacar -= 100;
-            }else if(valorASacar >= 50){
+                variavelAuxiliar -= 100;
+            }else if(variavelAuxiliar >= 50){
                 quantidadeNotaCinquenta++;
-                valorASacar -= 50;
-            }else if(valorASacar >= 20){
+                variavelAuxiliar -= 50;
+            }else if(variavelAuxiliar >= 20){
                 quantidadeNotaVinte++;
-                valorASacar -= 20;
-            }else if(valorASacar >= 10){
+                variavelAuxiliar -= 20;
+            }else if(variavelAuxiliar >= 10){
                 quantidadeNotaDez++;
-                valorASacar -= 10;
-            }else if(valorASacar >= 5){
+                variavelAuxiliar -= 10;
+            }else if(variavelAuxiliar >= 5){
                 quantidadeNotaCinco++;
-                valorASacar -= 5;
-            }else if(valorASacar >= 2){
+                variavelAuxiliar -= 5;
+            }else if(variavelAuxiliar >= 2){
                 quantidadeNotaDois++;
-                valorASacar -= 2;
-            }else if(valorASacar >=1){
+                variavelAuxiliar -= 2;
+            }else if(variavelAuxiliar >=1){
                 quantidadeNotaUm++;
-                valorASacar -= 1;
+                variavelAuxiliar -= 1;
                 
             }
         }
-
+        System.out.println(valorASacar);
         System.out.println(quantidadeNotaCem + " nota(s) de R$ 100,00");
         System.out.println(quantidadeNotaCinquenta + " nota(s) de R$ 50,00");
         System.out.println(quantidadeNotaVinte + " nota(s) de R$ 20,00");
@@ -50,4 +53,5 @@ public class Main {
         System.out.println(quantidadeNotaUm + " nota(s) de R$ 1,00");
 
     }
+    
 }
