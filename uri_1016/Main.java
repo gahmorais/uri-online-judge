@@ -14,7 +14,7 @@ Imprima o tempo necessário seguido da mensagem "minutos".
 
 */
 
-
+package uri_1016;
 import java.util.Scanner;
 
 public class Main {

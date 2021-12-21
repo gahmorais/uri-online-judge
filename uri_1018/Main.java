@@ -1,3 +1,4 @@
+package uri_1018;
 import java.util.Scanner;
 
 public class Main {

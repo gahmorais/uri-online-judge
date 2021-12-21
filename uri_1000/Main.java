@@ -1,6 +1,6 @@
+package uri_1000;
 import java.io.IOException;
 import java.util.Scanner;
- 
 /**
  * IMPORTANT: 
  *      O nome da classe deve ser "Main" para que a sua solução execute

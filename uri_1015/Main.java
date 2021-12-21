@@ -1,3 +1,4 @@
+package uri_1015;
 import java.util.Locale;
 import java.util.Scanner;
 
