@@ -17,7 +17,7 @@ Imprima sempre o final de linha após cada mensagem.
 
 */
 
-package uri_1023;
+package uri_1036;
 
 import java.util.Locale;
 import java.util.Scanner;

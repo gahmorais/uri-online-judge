@@ -18,7 +18,7 @@ Saída
 Mostre a respectiva mensagem após a validação dos valores.
 
 */
-package uri_1022;
+package uri_1035;
 
 import java.util.Scanner;
 

@@ -15,7 +15,7 @@ Saída
 A saída deve ser uma mensagem conforme exemplo abaixo.
 
 */
-package uri_1024;
+package uri_1037;
 
 import java.util.Scanner;
 import java.util.Locale;
