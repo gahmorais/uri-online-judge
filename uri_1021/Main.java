@@ -18,14 +18,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Double entrada = 0.00;
+        float entrada = 0;
         sc.useLocale(Locale.ENGLISH);
+
         int notaDeCem = 0,
             notaDeCinquenta = 0,
             notaDeVinte = 0,
             notaDeDez = 0,
             notaDeCinco = 0,
             notaDeDois = 0;
+
         int moedaDeUm = 0,
             moedaDeCinquenta = 0,
             moedaDeVinteCinco = 0,
@@ -33,62 +35,64 @@ public class Main {
             moedaDeCinco = 0,
             moedaDeUmCent = 0;
         
-            entrada = sc.nextDouble();
+            entrada = sc.nextFloat()*100;
 
-        while (entrada != 0) {
-      
-            if (entrada >= 100.00) {
+        while (entrada != 0.00) {
+            
+            if (entrada >= 10000) {
                 notaDeCem++;
-                entrada -= 100.00;
-            } else if (entrada >= 50.00) {
+                entrada -= 10000;
+            } else if (entrada >= 5000) {
                 notaDeCinquenta++;
-                entrada -= 50.00;
-            } else if (entrada >= 20.00) {
+                entrada -= 5000;
+            } else if (entrada >= 2000) {
                 notaDeVinte++;
-                entrada -= 20.00;
-            } else if (entrada >= 10.00) {
+                entrada -= 2000;
+            } else if (entrada >= 1000) {
                 notaDeDez++;
-                entrada -= 10.00;
-            } else if (entrada >= 5.00) {
+                entrada -= 1000;
+            } else if (entrada >= 500) {
                 notaDeCinco++;
-                entrada -= 5.00;
-            } else if (entrada >= 2.00) {
+                entrada -= 500;
+            } else if (entrada >= 200) {
                 notaDeDois++;
-                entrada -= 2.00;
-            } else if (entrada >= 1.00) {
+                entrada -= 200;
+            } else if (entrada >= 100) {
                 moedaDeUm++;
-                entrada -= 1.00;
-            }else if (entrada >= 0.50) {
+                entrada -= 100;
+            }else if (entrada >= 50) {
                 moedaDeCinquenta++;
-                entrada -= 0.50;
-            }else if (entrada >= 0.25) {
+                entrada -= 50;
+            }else if (entrada >= 25) {
                 moedaDeVinteCinco++;
-                entrada -= 0.25;
-            }else if (entrada >= 0.10) {
-                System.out.println(entrada);
+                entrada -= 25;
+            }else if (entrada >= 10) {
                 moedaDeDez++;
-                entrada -= 0.10;
-            }else if (entrada >= 0.05) {
+                entrada -= 10;
+            }else if (entrada >= 5) {
                 moedaDeCinco++;
-                entrada -= 0.05;
-            }else if (entrada >= 0.01) {
+                entrada -= 5;
+            }else if (entrada >= 1) {
                 moedaDeUmCent++;
-                entrada -= 0.01;
+                entrada -= 1;
             }
         }
 
-        System.out.println("Nota de Cem: " + notaDeCem);
-        System.out.println("Nota de Cinquenta: " + notaDeCinquenta);
-        System.out.println("Nota de Vinte: " + notaDeVinte);
-        System.out.println("Nota de Dez: " + notaDeDez);
-        System.out.println("Nota de Cinco: " + notaDeCinco);
-        System.out.println("Nota de Dois: " + notaDeDois);
-        System.out.println("Moeda de Um: " + moedaDeUm);
-        System.out.println("Moeda de Cinquenta: " + moedaDeCinquenta);
-        System.out.println("Moeda de Vinte e Cinco: " + moedaDeVinteCinco);
-        System.out.println("Moeda de Dez: " + moedaDeDez);
-        System.out.println("Moeda de Cinco: " + moedaDeCinco);
-        System.out.println("Moeda de Um Cent: " + moedaDeUmCent);
+        System.out.println("NOTAS:");
+        System.out.println(notaDeCem + " nota(s) de R$ 100.00");
+        System.out.println(notaDeCinquenta + " nota(s) de R$ 50.00");
+        System.out.println(notaDeVinte + " nota(s) de R$ 20.00");
+        System.out.println(notaDeDez + " nota(s) de R$ 10.00");
+        System.out.println(notaDeCinco + " nota(s) de R$ 5.00");
+        System.out.println(notaDeDois + " nota(s) de R$ 2.00");
+
+        System.out.println("MOEDAS:");
+        System.out.println(moedaDeUm + " moeda(s) de R$ 1.00");
+        System.out.println(moedaDeCinquenta+ " moeda(s) de R$ 0.50");
+        System.out.println(moedaDeVinteCinco+ " moeda(s) de R$ 0.25");
+        System.out.println(moedaDeDez+ " moeda(s) de R$ 0.10");
+        System.out.println(moedaDeCinco+ " moeda(s) de R$ 0.05");
+        System.out.println(moedaDeUmCent+ " moeda(s) de R$ 0.01");
         sc.close();
     }
 }
