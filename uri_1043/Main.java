@@ -28,14 +28,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         sc.useLocale(Locale.ENGLISH);
         float   abs = 0,
+                resultado = 0,
                 a = sc.nextFloat(),
                 b = sc.nextFloat(),
                 c = sc.nextFloat();
         abs = Math.abs(b-c);
-        if(abs < a && a < (b+c)){
-            System.out.println("É um triângulo");
+        if(a > abs && a < (b+c)){
+            //Perimetro do triângulo
+            resultado = a + b + c;
+            System.out.printf("Perimetro = %.1f\n", resultado);
         }else{
-            System.out.println("Não é um triângulo");
+            //Área do trapézio
+            resultado = ((a+b)*c)/2;
+            System.out.printf("Area = %.1f\n", resultado);
         }
         sc.close();
     }
