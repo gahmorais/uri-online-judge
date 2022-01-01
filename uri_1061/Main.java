@@ -30,8 +30,7 @@ Obs: Considere que o evento do caso de teste para o problema tem duração míni
 Calculo
 
 /*
-
-        dia * 24 * 60 * 60 = 86400
+        diaCorridos * 24 * 60 * 60 = 86400
         ((8 * 3600) + (12 * 60) + 23)
         29543
         ((6 * 3600) + (13 * 60) + 23)
@@ -48,78 +47,72 @@ Calculo
 
 */
 
+//https://www.beecrowd.com.br/judge/pt/problems/view/1061
+
 import java.util.Scanner;
 
 public class Main {
+    private static final int UM_DIA = 24 * 60 * 60; /* 86400 segundos */
+    private static final int UMA_HORA = 60 * 60; /* 3600 segundos */
+    private static final int UM_MINUTO = 60;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Dia ");
-        int diaInicio = sc.nextInt();
-        sc.nextLine();
-        String tempoInicio[] = sc.nextLine().replace(" ", "").split(":");
 
-        System.out.print("Dia ");
-        int diaFim = sc.nextInt();
-        sc.nextLine();
+        int diaInicio           = Integer.parseInt(sc.nextLine().split(" ")[1]);
+        String tempoInicio[]    = sc.nextLine().replace(" ", "").split(":");
 
-        String tempoFim[] = sc.nextLine().replace(" ", "").split(":");
+        int diaFim          = Integer.parseInt(sc.nextLine().split(" ")[1]);
+        String tempoFim[]   = sc.nextLine().replace(" ", "").split(":");
 
-        int horaInicio = Integer.parseInt(tempoInicio[0]);
-        int minutoInicio = Integer.parseInt(tempoInicio[1]);
-        int segundoInicio = Integer.parseInt(tempoInicio[2]);
+        int horaInicio      = Integer.parseInt(tempoInicio[0]);
+        int minutoInicio    = Integer.parseInt(tempoInicio[1]);
+        int segundoInicio   = Integer.parseInt(tempoInicio[2]);
 
-        int horaFim = Integer.parseInt(tempoFim[0]);
-        int minutoFim = Integer.parseInt(tempoFim[1]);
-        int segundoFim = Integer.parseInt(tempoFim[2]);
+        int horaFim     = Integer.parseInt(tempoFim[0]);
+        int minutoFim   = Integer.parseInt(tempoFim[1]);
+        int segundoFim  = Integer.parseInt(tempoFim[2]);
 
-        int UM_DIA = 24 * 60 * 60; /* 86400 segundos */
-        int UMA_HORA = 60 * 60;
+        int tempoInicioEmSegundos   = (horaInicio * UMA_HORA) + (minutoInicio * UM_MINUTO) + segundoInicio;
+        int tempoFimEmSegundos      = (horaFim * UMA_HORA) + (minutoFim * UM_MINUTO) + segundoFim;
 
-        int tempoInicioEmSegundos = (horaInicio * 3600) + (minutoInicio * 60) + segundoInicio;
-        int tempoFimEmSegundos = (horaFim * 3600) + (minutoFim * 60) + segundoFim;
+        int tempoDecorrido[] = calculaTempoDecorrido(diaInicio, 
+                                                        diaFim, 
+                                                        tempoInicioEmSegundos, 
+                                                        tempoFimEmSegundos
+                                                    );
 
-        int diferencaTempo = Math.abs(tempoFimEmSegundos - tempoInicioEmSegundos);
-
-        int duracaoTotalEvento = (UM_DIA * (diaFim - diaInicio)) - diferencaTempo;
-
-        /*
-         * 
-         * dia * 24 * 60 * 60 = 86400
-         * ((8 * 3600) + (12 * 60) + 23)
-         * 29543
-         * ((6 * 3600) + (13 * 60) + 23)
-         * 22403
-         * 
-         * 29543 - 22403 = 7140
-         * 
-         * duracaoEvento = 4 * 86400 - 7140 = 338460
-         * 338460 / (24*3600) = 3
-         * 338460 % (24*3600) / 60 = 22
-         * 338460 - (3*24*3600) = 79260
-         * 79260 / 60 = 22
-         * 79260 - (22*60*60) = 60
-         * 60 / 60 = 1
-         * 
-         */
-        System.out.println(duracaoTotalEvento);
-
-        int duracaoEvento_dia = duracaoTotalEvento / UM_DIA;
-        duracaoTotalEvento -= duracaoEvento_dia * UM_DIA ;
-
-        int duracaoEvento_hora = duracaoTotalEvento / 60;
-        duracaoTotalEvento -= duracaoEvento_hora * UMA_HORA;
-
-        int duracaoEvento_minutos = duracaoTotalEvento / 60;
-        duracaoTotalEvento -= duracaoEvento_minutos * 60;
-
-        int duracaoEvento_segundos = duracaoTotalEvento;
-
-        System.out.println(duracaoEvento_dia);
-        System.out.println(duracaoEvento_hora);
-        System.out.println(duracaoEvento_minutos);
-        System.out.println(duracaoEvento_segundos);
+        System.out.printf("%d dia(s)\n", tempoDecorrido[0]);
+        System.out.printf("%d hora(s)\n", tempoDecorrido[1]);
+        System.out.printf("%d minuto(s)\n", tempoDecorrido[2]);
+        System.out.printf("%d segundo(s)\n", tempoDecorrido[3]);
 
         sc.close();
+    }
+
+    private static int[] calculaTempoDecorrido( int diaInicio, int diaFim, 
+                                                int tempoInicial, int tempoFinal) {
+
+        int diferencaTempo = tempoInicial - tempoFinal;
+        int duracaoTotalEventoEmSegundos = UM_DIA * (diaFim - diaInicio) - diferencaTempo;
+
+        int duracaoEvento_dia = duracaoTotalEventoEmSegundos / UM_DIA;
+        duracaoTotalEventoEmSegundos %= UM_DIA;
+
+        int duracaoEvento_hora = duracaoTotalEventoEmSegundos / UMA_HORA;
+        duracaoTotalEventoEmSegundos %= UMA_HORA;
+
+        int duracaoEvento_minutos = duracaoTotalEventoEmSegundos / UM_MINUTO;
+        duracaoTotalEventoEmSegundos %= UM_MINUTO;
+
+        int duracaoEvento_segundos = duracaoTotalEventoEmSegundos;
+
+        int[] duracaoEvento = { duracaoEvento_dia, 
+                                duracaoEvento_hora, 
+                                duracaoEvento_minutos, 
+                                duracaoEvento_segundos };
+        return duracaoEvento;
+
     }
 
 }
